@@ -1,0 +1,86 @@
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+lenghts = [7, 5, 3, 1];
+iterator = 0;
+
+
+class Block{
+  constructor() {
+    this.colorOfBlock = getRandomColor();
+    this.Xcor = 5;
+    this.Ycor = 0;
+    if (getRandomArbitrary(0,1)>0.5){
+      this.lenght = getRandomArbitrary(2,5)
+    }
+    else {
+      this.lenght = lenghts[iterator];
+      if (iterator!==4){
+        iterator++;
+      }
+      else {
+        iterator = 0;
+      }
+    }
+  }
+
+  CheckDown(){
+    //Проверка на дно
+    if (this.Ycor<23){
+      //Проверка на блок
+      for (let i = this.Xcor; i < this.Xcor+this.lenght; i++) {
+        if (document.getElementById( '' + (this.Ycor + 1) + ',' + i).style.backgroundColor!=='rgb(179, 212, 252)'){
+          return true;
+        }
+      }
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  setBlockInFor(color){
+    for (let i = this.Xcor; i < this.Xcor+this.lenght; i++) {
+      document.getElementById( '' + this.Ycor + ',' + i).style.backgroundColor=color;
+    }
+  }
+
+  Refresh(){
+    this.setBlockInFor(this.colorOfBlock);
+  }
+
+  Clean(){
+    this.setBlockInFor('#b3d4fc');
+  }
+
+  GetDown(){
+    if (this.Ycor<23){
+      this.Ycor++;
+    }
+  }
+  GoLeft(){
+    if (this.Xcor>0 && document.getElementById( '' + (this.Ycor) + ',' + (this.Xcor-1)).style.backgroundColor==='rgb(179, 212, 252)'){
+      this.Xcor--;
+    }
+  }
+  GoRight(){
+    //TODO Исправить баг со съеданием при съезжании направо
+    if (this.Xcor<23-this.lenght){
+      this.Xcor++;
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}

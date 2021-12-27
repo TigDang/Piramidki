@@ -87,6 +87,42 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+:root{
+  --cellsize: 3vh;
+}
+
+#gameField{
+  position: fixed;
+  border: #000000 solid 2px;
+  border-right: #8585b9 solid 20vw;
+  margin: 10px;
+}
+
+.pixel{
+  display: inline-block;
+  height: var(--cellsize);
+  width: var(--cellsize);;
+  background-color: #b3d4fc;
+  border: #8c9bbc 0.1vh solid;
+  float:left;
+}
+
+#scoreboard{
+  position: fixed;
+  display: inline-block;
+  font-size: 5vh;
+  left: 45vw;
+  top: 10vh;
+}
+#scoreboard *{
+  display: inline;
+}
+
+#score{
+
+}
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
