@@ -13,6 +13,20 @@ function getRandomColor() {
 lenghts = [7, 5, 3, 1];
 iterator = 0;
 
+function randomOdd(n, m){
+  let min, max;
+  if(n > m){
+    min = m;
+    max = n;
+  } else if(n === m){
+    min = max = n;
+  } else {
+    min = n;
+    max = m;
+  }
+  const result = Math.floor(min + Math.random() * (max - min));
+  return result + ((result % 2) - 1);
+}
 
 class Block{
   constructor() {
@@ -20,7 +34,7 @@ class Block{
     this.Xcor = 5;
     this.Ycor = 0;
     if (getRandomArbitrary(0,1)>0.5){
-      this.lenght = getRandomArbitrary(2,5)
+      this.lenght = randomOdd(2,5)
     }
     else {
       this.lenght = lenghts[iterator];
@@ -84,3 +98,5 @@ class Block{
     }
   }
 }
+
+

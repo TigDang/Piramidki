@@ -94,7 +94,7 @@ textarea {
 #gameField{
   position: fixed;
   border: #000000 solid 2px;
-  border-right: #8585b9 solid 20vw;
+  border-right: #e2000f solid 1vw;
   margin: 10px;
 }
 
@@ -121,6 +121,17 @@ textarea {
 #score{
 
 }
+
+#initScreen{
+  position: absolute;
+  z-index: 1000;
+  width:100%;
+  height:100%;
+  font-size: 7vh;
+  color: white;
+  backdrop-filter: blur(2px) brightness(20%);
+}
+
 
 
 /* ==========================================================================
