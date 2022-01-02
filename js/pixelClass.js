@@ -34,7 +34,7 @@ class Block{
     this.Xcor = 5;
     this.Ycor = 0;
     if (getRandomArbitrary(0,1)>0.5){
-      this.lenght = randomOdd(2,5)
+      this.lenght = getRandomArbitrary(1.5,5);
     }
     else {
       this.lenght = lenghts[iterator];

@@ -1,4 +1,5 @@
 function StartGame(){
+  document.getElementById('initScreen').hidden=true;
   playableBlock = new Block();
   playableBlock.Refresh();
   let score = 0;
@@ -113,4 +114,3 @@ function StartGame(){
     return 23;
   }
 }
-StartGame();
