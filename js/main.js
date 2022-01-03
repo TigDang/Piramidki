@@ -29,12 +29,12 @@ function StartGame(){
 
         if (CheckPiramyd()){
           console.log('Pyramid is determined');
-          score = score + DetectFundationFromRight()-DetectFundationFromLeft() + 1;
+          score = score + GetCountOfBlocks();
           document.getElementById('score').innerText=score;
         }
         else {
           console.log('Pyramid is NOT determined');
-          score = score - (DetectFundationFromRight()-DetectFundationFromLeft() + 1);
+          score = score - GetCountOfBlocks();
           document.getElementById('score').innerText=score;
         }
         ClearLevel();
@@ -113,4 +113,15 @@ function StartGame(){
     }
     return 23;
   }
+
+}
+function GetCountOfBlocks(){
+  const parent = document.getElementById('gameField');
+  let count = -24;
+  for (let i = 0; i < parent.children.length; i++) {
+    if(parent.children[i].style.backgroundColor!=='rgb(179, 212, 252)'){
+      count++;
+    }
+  }
+  return count;
 }
