@@ -26,17 +26,19 @@ function StartGame(){
       if (playableBlock.lenght===1){
         console.log('Checking of pyramid is started');
         playableBlock = new Block();
+        let nickname = document.getElementById('nicknameInput').value;
 
         if (CheckPiramyd()){
           console.log('Pyramid is determined');
           score = score + GetCountOfBlocks();
-          document.getElementById('score').innerText=score;
         }
         else {
           console.log('Pyramid is NOT determined');
           score = score - GetCountOfBlocks();
-          document.getElementById('score').innerText=score;
         }
+        document.getElementById('score').innerText=score;
+        Users[ITERATOR].score=score;
+        setCookie('users', JSON.stringify(Users));
         ClearLevel();
       }
       playableBlock = new Block();

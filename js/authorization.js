@@ -1,13 +1,46 @@
 console.log(document.cookie);
 count = 0;
 
-deleteCookie('username');
-deleteCookie('userscore');
+let Users = [];
+
+if (getCookie('users')===undefined){
+  setCookie('users', JSON.stringify(Users));
+}
+else {
+  Users = JSON.parse(getCookie('users'));
+}
+
+
+class User{
+  score = 0;
+  constructor(nick, pass) {
+    if (nick.length*pass.length!==0){
+      this.nickname = nick;
+      this.password = pass;
+    }
+  }
+}
+
+let ITERATOR;
+
+function  GetUser(arrOfUsers, name) {
+  for (let i = 0; i < arrOfUsers.length; i++){
+    if (arrOfUsers[i].nickname===name){
+      ITERATOR=i;
+      return arrOfUsers[i];
+    }
+  }
+  return undefined;
+}
 
 fitAboutUsers();
 
 function fitAboutUsers(){
-  document.getElementById('aboutUsers').innerText=document.cookie;
+  let arr = JSON.parse(getCookie('users'));
+  for (let i = 0; i < arr.length; i++){
+    document.getElementById('aboutUsers').innerText+=arr[i].nickname + ' - ' + arr[i].score + ';';
+    document.getElementById('aboutUsers').innerHTML+='<br/>';
+  }
 }
 
 function getCookie(name) {
@@ -42,23 +75,33 @@ function setCookie(name, value, options = {}) {
   document.cookie = updatedCookie;
 }
 
-function deleteCookie(name) {
-  setCookie(name, "", {
-    'max-age': -1
-  })
-}
-
-function SignIn(){
-  const nickname = document.getElementById('nicknameInput').value;
-  const password = document.getElementById('passwordInput').value;
-  if (nickname.length*password.length!==0){
-    document.cookie = encodeURIComponent(nickname)+'='+encodeURIComponent(password);
-    document.location.reload();
+function CookiesDelete() {
+  var cookies = document.cookie.split(";");
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+    document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 }
 
+function SignIn(){
+  let nickname = document.getElementById('nicknameInput').value;
+  let password = document.getElementById('passwordInput').value;
+  if (nickname.length*password.length!==0){
+    let newUser = new User(nickname, password);
+    Users.push(newUser);
+    setCookie('users', JSON.stringify(Users));
+    // document.location.reload();
+  }
+  fitAboutUsers();
+
+  console.log(JSON.parse(getCookie('users')));
+}
+
 function CheckNickname(){
-  if (getCookie(document.getElementById('nicknameInput').value)!==undefined){
+  if (GetUser(JSON.parse(getCookie('users')), document.getElementById('nicknameInput').value)!==undefined){
     document.getElementById('signinInput').disabled=true;
   }
   else {
@@ -67,12 +110,10 @@ function CheckNickname(){
 }
 
 function LogIn(){
-  const nickname = document.getElementById('nicknameInput').value;
-  const password = document.getElementById('passwordInput').value;
-  if (password===getCookie(nickname)){
+  let nickname = document.getElementById('nicknameInput').value;
+  let password = document.getElementById('passwordInput').value;
+  if (password === GetUser(JSON.parse(getCookie('users')), nickname).password){
     document.getElementById('continueInput').disabled=false;
-    setCookie('username', nickname);
-    setCookie('userscore', 0);
   }
   else {
     document.getElementById('continueInput').disabled=true;
