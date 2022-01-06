@@ -26,17 +26,19 @@ function StartGame(){
       if (playableBlock.lenght===1){
         console.log('Checking of pyramid is started');
         playableBlock = new Block();
+        let nickname = document.getElementById('nicknameInput').value;
 
         if (CheckPiramyd()){
           console.log('Pyramid is determined');
-          score = score + DetectFundationFromRight()-DetectFundationFromLeft() + 1;
-          document.getElementById('score').innerText=score;
+          score = score + GetCountOfBlocks();
         }
         else {
           console.log('Pyramid is NOT determined');
-          score = score - (DetectFundationFromRight()-DetectFundationFromLeft() + 1);
-          document.getElementById('score').innerText=score;
+          score = score - GetCountOfBlocks();
         }
+        document.getElementById('score').innerText=score;
+        Users[ITERATOR].score=score;
+        setCookie('users', JSON.stringify(Users));
         ClearLevel();
       }
       playableBlock = new Block();
@@ -113,4 +115,15 @@ function StartGame(){
     }
     return 23;
   }
+
+}
+function GetCountOfBlocks(){
+  const parent = document.getElementById('gameField');
+  let count = -24;
+  for (let i = 0; i < parent.children.length; i++) {
+    if(parent.children[i].style.backgroundColor!=='rgb(179, 212, 252)'){
+      count++;
+    }
+  }
+  return count;
 }
