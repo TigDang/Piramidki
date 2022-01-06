@@ -25,14 +25,23 @@
 <body>
 
 <div id="initScreen">
-  <div>
+  <div id="rulesBoard">
     Добро пожаловать. <br/> В этой игре вам предстоит собирать пирамидки из горизонтальных блоков, падающих сверху. <br/> Вы управляете ими стрелками на клавиатуре.
+    <br/> Пирамидкой считается набор блоков, имеющий по краям ровные единичные "лесенки", сходящиеся в одной точке.
+    <br/> Вершиной и последним блоком должен быть единичный блок. Когда он падает, игровое поле проверяется на пирамидку, и если она есть - прибавлются очки, а если её нет - то очки убавляются.
   </div>
-  <button onclick="StartGame()">Продолжить</button>
+  <div id="inputs">
+    <form>
+      <input id='nicknameInput' type="text" onkeyup="CheckNickname()" placeholder="Nickname">
+      <input id='passwordInput' type="password" onkeyup="LogIn()" placeholder="password">
+    </form>
+    <button disabled onclick="SignIn()" id="signinInput">Регистрация</button>
+    <button disabled onclick="StartGame()" id="continueInput">Продолжить</button>
+  </div>
+  <div id="aboutUsers"></div>
 </div>
 
-<div id="gameField">
-</div>
+<div id="gameField"></div>
 
 <div id="scoreboard">Счёт: <div id="score"></div>
 </div>
@@ -40,6 +49,7 @@
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
+  <script src="js/authorization.js"></script>
   <script src="js/initialCreating.js"></script>
   <script src="js/pixelClass.js"></script>
   <script src="js/main.js"></script>
