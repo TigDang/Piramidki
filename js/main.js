@@ -37,8 +37,10 @@ function StartGame(){
           score = score - GetCountOfBlocks();
         }
         document.getElementById('score').innerText=score;
-        Users[ITERATOR].score=score;
-        setCookie('users', JSON.stringify(Users));
+        if (Users[ITERATOR].score<score){
+          Users[ITERATOR].score=score;
+          setCookie('users', JSON.stringify(Users));
+        }
         ClearLevel();
       }
       playableBlock = new Block();

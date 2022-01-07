@@ -2,10 +2,10 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
+  var letters = '23456789AB';
   var color = '#';
   for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+    color += letters[Math.floor(Math.random() * letters.length)];
   }
   return color;
 }

@@ -41,6 +41,9 @@ function fitAboutUsers(){
     document.getElementById('aboutUsers').innerText+=arr[i].nickname + ' - ' + arr[i].score + ';';
     document.getElementById('aboutUsers').innerHTML+='<br/>';
   }
+  if (document.getElementById('aboutUsers').innerText===''){
+    document.getElementById('aboutUsers').innerText='Тут будет таблица с результатами пользователей, как только Вы зарегестрируете хотя бы одного!'
+  }
 }
 
 function getCookie(name) {
