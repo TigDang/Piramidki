@@ -138,7 +138,7 @@ body {
   float:left;
 }
 
-#scoreboard{
+#scoreboard, #timer{
   border: #e73c7e solid 10px;
   background-color: #161616;
   color: white;
@@ -153,8 +153,27 @@ body {
   display: inline;
 }
 
-#score{
+#timer{
+  top: 20vh;
+  width: 250px;
+}
 
+#timer *{
+  display: inline;
+}
+
+a.text {
+  color: white;
+}
+
+#endgameWindow{
+  color: white;
+  font-size: xxx-large;
+  position: absolute;
+  z-index: 1000;
+  background: rgba(50,50,50,0.5);
+  top: 100px;
+  left: 100px;
 }
 
 #initScreen{

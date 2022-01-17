@@ -26,9 +26,11 @@
 
 <div id="initScreen">
   <div id="rulesBoard">
-    Добро пожаловать. <br/> - В этой игре вам предстоит собирать пирамидки из горизонтальных блоков, падающих сверху. <br/> - Вы управляете ими стрелками на клавиатуре.
+    Добро пожаловать. <br/> - В этой игре вам предстоит собирать пирамидки из горизонтальных блоков, падающих сверху.
+    <br/> - Вы управляете ими стрелками на клавиатуре.
     <br/> - Пирамидкой считается набор блоков, имеющий по краям ровные единичные "лесенки", сходящиеся в одной точке.
-    <br/> - Вершиной и последним блоком должен быть единичный блок. Когда он устанавливается, игровое поле проверяется на пирамидку, и если она есть - прибавлются очки, а если её нет - то очки убавляются.
+    <br/> - Вершиной и последним блоком должен быть единичный блок. Когда он устанавливается, игровое поле проверяется
+    на пирамидку, и если она есть - прибавлются очки, а если её нет - то очки убавляются.
     При любом исходе поле очищается.
     <br/> - Если падающий блок Вас не устраивает, Вы можете удалить его, приблизив к правому краю игрового поля.
   </div>
@@ -39,29 +41,50 @@
     </form>
     <button disabled onclick="SignIn()" id="signinInput">Регистрация</button>
     <button disabled onclick="StartGame()" id="continueInput">Продолжить</button>
+    <button onclick="StartAnonymGame()">Войти анонимно</button>
   </div>
   <div id="aboutUsers"></div>
 </div>
 
 <div id="gameField"></div>
 
-<div id="scoreboard">Счёт: <div id="score"></div>
+<div id="scoreboard">Счёт:
+  <div id="score"></div>
 </div>
 
+<div id="timer">Время:
+  <div id="ti">100</div>
+</div>
 
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/authorization.js"></script>
-  <script src="js/initialCreating.js"></script>
-  <script src="js/pixelClass.js"></script>
-  <script src="js/main.js"></script>
+<details hidden ID="endgameWindow">
+  <summary>
+    КОНЕЦ ИГРЫ
+  </summary>
+  Время вышло! <br/>
+  <a class="text" href="index.html"><--Обратно</a>
+</details>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/authorization.js"></script>
+<script src="js/initialCreating.js"></script>
+<script src="js/pixelClass.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () {
+    ga.q.push(arguments)
+  };
+  ga.q = [];
+  ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('set', 'transport', 'beacon');
+  ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>

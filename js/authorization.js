@@ -21,7 +21,7 @@ class User{
   }
 }
 
-let ITERATOR;
+let ITERATOR=0;
 
 function  GetUser(arrOfUsers, name) {
   for (let i = 0; i < arrOfUsers.length; i++){
