@@ -60,6 +60,7 @@ function StartGame() {
   }
 
   function Controls(e) {
+    console.log(e.key)
     playableBlock.Clean();
     switch (e.key) {
       case "ArrowLeft":  // если нажата клавиша влево
@@ -72,6 +73,14 @@ function StartGame() {
         break;
       case "ArrowDown": // если нажата клавиша вниз
         Click();
+        break;
+      case " ": // Spacebar
+        Click();
+        Click();
+        Click();
+        Click();
+        Click();
+        break;
     }
     playableBlock.Refresh();
   }
