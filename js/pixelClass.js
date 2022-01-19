@@ -10,15 +10,15 @@ function getRandomColor() {
   return color;
 }
 
-lenghts = [7, 5, 3, 1];
-iterator = 0;
+lenghts = [11, 9, 7, 5, 3, 1];
+let iterator = 0;
 
-function randomOdd(n, m){
+function randomOdd(n, m) {
   let min, max;
-  if(n > m){
+  if (n > m) {
     min = m;
     max = n;
-  } else if(n === m){
+  } else if (n === m) {
     min = max = n;
   } else {
     min = n;
@@ -28,20 +28,18 @@ function randomOdd(n, m){
   return result + ((result % 2) - 1);
 }
 
-class Block{
+class Block {
   constructor() {
     this.colorOfBlock = getRandomColor();
     this.Xcor = 5;
     this.Ycor = 0;
-    if (getRandomArbitrary(0,1)>0.5){
-      this.lenght = getRandomArbitrary(1.5,5);
-    }
-    else {
+    if (getRandomArbitrary(0, 1) > 0.5) {
+      this.lenght = getRandomArbitrary(1.5, 5);
+    } else {
       this.lenght = lenghts[iterator];
-      if (iterator!==4){
+      if (iterator !== 6) {
         iterator++;
-      }
-      else {
+      } else {
         iterator = 0;
       }
     }
