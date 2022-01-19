@@ -138,7 +138,7 @@ body {
   float:left;
 }
 
-#scoreboard, #timer{
+#scoreboard, #timer, #goback-button{
   border: #e73c7e solid 10px;
   background-color: #161616;
   color: white;
@@ -164,6 +164,13 @@ body {
 
 a.text {
   color: white;
+}
+
+#goback-button{
+  left: 65vw;
+  width: fit-content;
+  background-color: rgba(10, 10, 10, 0.5); /* 0.5 - полупрозрачный */
+  border: rgba(10, 10, 10, 0.7) solid 10px;
 }
 
 #endgameWindow{
