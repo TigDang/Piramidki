@@ -174,3 +174,17 @@ function StartAnonymGame() {
 
   StartGame();
 }
+
+let switcherTheme = true;
+
+function ChangeTheme(){
+  if (switcherTheme){
+    document.body.setAttribute('style', 'filter: invert(100%);')
+    switcherTheme = false;
+  }
+  else {
+    document.body.setAttribute('style', 'filter: invert(0%);')
+    switcherTheme = true;
+  }
+  document.getElementById('gameField').style.borderRight='#e2000f solid 1vw';
+}
