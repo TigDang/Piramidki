@@ -10,7 +10,13 @@ function StartGame() {
   document.getElementById('ti').innerText = timing;
 
   function ClickTimer() {
-    let timeout = -(0.8 * score) + 500;
+    let timeout = 500;
+    if (score<150){
+      timeout = -(2 * score) + 500;
+    }
+    else{
+      timeout = -(0.333 * score) + 250;
+    }
     console.log('Timeout is ' + timeout);
     Click();
     if (parseInt(document.getElementById('ti').innerText) > 0) {
