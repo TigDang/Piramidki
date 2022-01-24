@@ -3,10 +3,20 @@ function StartGame() {
   let playableBlock = new Block();
   playableBlock.Refresh();
   let score = 0;
-  let timerInterval = setInterval(TimerFunc, 1000)
-  let clickInt = setInterval(Click, 500)
+  let timerInterval = setInterval(TimerFunc, 1000);
+  ClickTimer();
   document.getElementById('score').innerText = score;
+  let timing = 100;
+  document.getElementById('ti').innerText = timing;
 
+  function ClickTimer() {
+    let timeout = -(0.8 * score) + 500;
+    console.log('Timeout is ' + timeout);
+    Click();
+    if (parseInt(document.getElementById('ti').innerText) > 0) {
+      let clickInt = setTimeout(ClickTimer, timeout);
+    }
+  }
 
   function ClearLevel() {
     for (var i = 0; i < 24; i++) {
@@ -17,12 +27,11 @@ function StartGame() {
   }
 
   function TimerFunc() {
-    let timing = document.getElementById('ti');
-    if (parseInt(timing.innerText) > 0) {
-      timing.innerText--;
+    if (timing > 0) {
+      timing--;
+      document.getElementById('ti').innerText = timing;
     } else {
       clearInterval(timerInterval);
-      clearInterval(clickInt);
       removeEventListener("keydown", Controls);
       document.getElementById('endgameWindow').open = true;
       document.getElementById('endgameWindow').hidden = false;
@@ -44,6 +53,8 @@ function StartGame() {
         if (CheckPiramyd()) {
           console.log('Pyramid is determined');
           score = score + GetCountOfBlocks();
+          timing += GetCountOfBlocks();
+          document.getElementById('ti').innerText = timing;
         } else {
           console.log('Pyramid is NOT determined');
           score = score - GetCountOfBlocks();
@@ -150,10 +161,10 @@ function GetCountOfBlocks() {
   return count;
 }
 
-function StartAnonymGame(){
+function StartAnonymGame() {
   let nickname = 'Anonym';
   let password = 'Anonym';
-  if (GetUser(JSON.parse(getCookie('users')), nickname)===undefined){
+  if (GetUser(JSON.parse(getCookie('users')), nickname) === undefined) {
     let newUser = new User(nickname, password);
     Users.push(newUser);
     setCookie('users', JSON.stringify(Users));
