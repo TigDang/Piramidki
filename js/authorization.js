@@ -3,18 +3,18 @@ count = 0;
 
 let Users = [];
 
-if (getCookie('users')===undefined){
+if (getCookie('users')===undefined){ // Если в кукис нет юзеров, то инициализируем в них пустой массив юзеров в формате json 
   setCookie('users', JSON.stringify(Users));
 }
-else {
+else { // Иначе парсим массив из формата json из кукис
   Users = JSON.parse(getCookie('users'));
 }
 
 
-class User{
+class User{ // Класс, описывающий пользователя
   score = 0;
-  constructor(nick, pass) {
-    if (nick.length*pass.length!==0){
+  constructor(nick, pass) { 
+    if (nick.length*pass.length!==0){ // Если длина пароля и ника не нулевая, то инициализируем экземпляр юзера с указанным паролем и ником
       this.nickname = nick;
       this.password = pass;
     }
@@ -46,14 +46,14 @@ function fitAboutUsers(){
   }
 }
 
-function getCookie(name) {
+function getCookie(name) { // Стандартная функция получения куки
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-function setCookie(name, value, options = {}) {
+function setCookie(name, value, options = {}) { // Стандартная функция получения куки
 
   options = {
     path: '/',
@@ -78,7 +78,7 @@ function setCookie(name, value, options = {}) {
   document.cookie = updatedCookie;
 }
 
-function CookiesDelete() {
+function CookiesDelete() { // Фукнция удаления куки - для откладки игры
   var cookies = document.cookie.split(";");
   for (var i = 0; i < cookies.length; i++) {
     var cookie = cookies[i];
@@ -89,7 +89,7 @@ function CookiesDelete() {
   }
 }
 
-function SignIn(){
+function SignIn(){ // Функция регистрации пользователя, перезагрузка страницы
   let nickname = document.getElementById('nicknameInput').value;
   let password = document.getElementById('passwordInput').value;
   if (nickname.length*password.length!==0){
@@ -102,7 +102,7 @@ function SignIn(){
   console.log(JSON.parse(getCookie('users')));
 }
 
-function CheckNickname(){
+function CheckNickname(){ // Проверка наличия никнейма и манипуляция кнопкой регитрации в зависимости от этого
   if (GetUser(JSON.parse(getCookie('users')), document.getElementById('nicknameInput').value)!==undefined){
     document.getElementById('signinInput').disabled=true;
   }
@@ -111,7 +111,7 @@ function CheckNickname(){
   }
 }
 
-function LogIn(){
+function LogIn(){ // Функция авторизации - манипуляция кнопкой входа
   let nickname = document.getElementById('nicknameInput').value;
   let password = document.getElementById('passwordInput').value;
   if (password === GetUser(JSON.parse(getCookie('users')), nickname).password){
